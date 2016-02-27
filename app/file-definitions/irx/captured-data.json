@@ -1,0 +1,63 @@
+{
+    "type": "CAP",
+    "name": "Captured Data",
+    "format": "csv",      
+    "suffixes": ["cap", "cdi", "cde", "mcl"],
+    "records": [{
+            "type": "H",
+            "name": "Header Record",
+            "fields": [
+                ["Record Type"],
+                ["Version ID"],
+                ["Cash Letter Date"],
+                ["Entry Number"],
+                ["String Name"],
+                ["Num Items"],
+                ["Host ID"],
+                ["Site"],
+                ["Cash Letter Type"],
+                ["Reserved 1"],
+                ["Reserved 2"],
+                ["Reserved 3"]
+            ]
+        },
+
+        {
+            "type": "D",
+            "name": "Document Record",
+            "parent": "H",              
+            "fields": [
+                ["Record Type"],
+                ["Doc Type"],
+                ["Bundle?"],
+                ["Cap Seq Num"],
+                ["Bank Number"],
+                ["Application Code"],
+                ["Serial"],
+                ["Opt 6"],
+                ["Routing/Transit"],
+                ["Opt 4"],
+                ["Account Number"],
+                ["Proc Ctl"],
+                ["Amount"],
+                ["Image Key"],
+                ["Rtn Reason"],
+                ["Decision"],
+                ["Deposit Acct Num"],
+                ["Sort Information"],
+                ["Advice Control #"],
+                ["Amount String"],
+                ["Validity Flags"],
+                ["Dep. Bank Number"],
+                ["Dep. Appl Code"],
+                ["Deposit Date"],
+                ["Item ID"],
+                ["Pass Through MICR"],
+                ["Returned Item Type"],
+                ["External Tray ID"],
+                ["Reserved 3"],
+                ["Reserved 4"]
+            ]
+        }
+    ]
+}

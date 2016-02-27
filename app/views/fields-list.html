@@ -1,0 +1,50 @@
+<div>
+    <form name="fieldsForm" novalidate>
+        <table class="table">
+            <tr>
+                <th class="col-md-4">Name</th>
+                <th class="col-md-8">Value</th>        
+            </tr>
+            <tr data-ng-repeat="field in uiModel.selectedRecord.fields" data-ng-click="showField(field)">
+                <td data-ng-class="{'selected-field': field.isSelected}">{{field.name}} <span data-ng-show="{{field.fieldDefinition.isRequired}}">*</span></td>
+                <td><span class="form-group" 
+                          data-ng-class="{ 'has-error': fieldsForm['{{field.fieldDefinition.id}}'].$invalid && !fieldsForm['{{field.fieldDefinition.id}}'].$pristine }">
+                        <!-- Bootstrap's class=form-control, overrides the box size - that's good for long fields -->                
+                        <input  type="text" 
+                                class="form-control"
+                                id="{{field.fieldDefinition.id}}"
+                                name="{{field.fieldDefinition.id}}"                               
+                                data-ng-model="field.data" 
+                                data-ng-disabled="{{field.fieldDefinition.isReadOnly}}"
+                                data-ng-required="{{field.fieldDefinition.isRequired}}"
+                                data-ng-maxlength="{{field.fieldDefinition.length}}"  
+                                data-ng-pattern="'{{field.fieldDefinition.pattern}}'"
+                                data-ng-model-options="{ allowInvalid: true }"
+                                data-ng-trim="false"
+                                data-ng-disabled="{{field.fieldDefinition.codes}}"
+                                size="{{field.fieldDefinition.length}}"
+                                maxlength="{{field.fieldDefinition.length}}">
+                        <select class="form-control"
+                                id="{{field.fieldDefinition.id + 'Code'}}"
+                                name="{{field.fieldDefinition.id + 'Code'}}"                               
+                                data-ng-if="field.fieldDefinition.codes"  
+                                data-ng-model="field.data"
+                                data-ng-options="code.code as code.description for code in field.fieldDefinition.codes">
+                        </select>
+                        <span data-ng-show="!fieldsForm['{{field.fieldDefinition.id}}'].$pristine">
+                            <small data-ng-show="fieldsForm['{{field.fieldDefinition.id}}'].$error.required">
+                                 {{field.fieldDefinition.name}} is required.
+                            </small>
+                            <small data-ng-show="fieldsForm['{{field.fieldDefinition.id}}'].$error.maxlength">
+                                 {{field.fieldDefinition.name}} is too long.
+                            </small>         
+                            <small data-ng-show="fieldsForm['{{field.fieldDefinition.id}}'].$error.pattern">
+                                 {{field.fieldDefinition.name}} must be {{field.fieldDefinition.formatMessage}}.
+                            </small>   
+                        </span>    
+                    </span>                    
+                </td>            
+            </tr>
+        </table> 
+    </form>
+</div>

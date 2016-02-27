@@ -1,0 +1,16 @@
+<div class="col-md-4">
+    <table class="table">
+        <tr><td class="col-md-4">Size:</td>
+            <td class="col-md-8">{{uiModel.selectedField.fieldDefinition.length}}</td>
+        </tr>
+        <tr><td>Usage:</td>
+            <td>{{uiModel.selectedField.fieldDefinition.requirement}}</td>
+        </tr>    
+        <tr><td>Type:</td>
+            <td>{{uiModel.selectedField.fieldDefinition.formatName}}</td>
+        </tr>         
+    </table>
+</div>
+<div class="col-md-8">
+    {{uiModel.selectedField.description || uiModel.selectedField.name}}
+</div>

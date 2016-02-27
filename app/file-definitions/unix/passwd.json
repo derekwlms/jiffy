@@ -1,0 +1,22 @@
+{   "type": "passwd", "name": "Unix etc/passwd file", "format": "delimited", "fieldDelimiter": ":", "fieldWrapper": " ", "suffixes": [ "passwd" ],
+ 
+    "records": [
+        { "type": "User", "name": "User Record", 
+          "fields": [ [ "Name",                   32, "M", "", "", 
+                            "The user's login name.  It should not contain capital letters." ],
+                      [ "Password",              128, "M", "", "",  
+                            "Either the encrypted user password, an asterisk (*), or the letter 'x' (shadow file used)." ],
+                      [ "User Identifier (UID)",  10, "M", "N", "", 
+                            "The privileged root login account (superuser) has the user ID 0." ], 
+                      [ "Group Identifier (GID)", 10, "M", "N", "", 
+                            "The privileged root login account (superuser) has the user ID 0." ],   
+                      [ "Comment (GECOS)",       128, "O", "", "", 
+                            "Optional comment field, used only for informational purposes. Usually, it contains the full username.  Some programs (for example, finger) display information from this field." ],     
+                      [ "Home Directory (HOME)", 128, "M", "", "", 
+                            "The user's home directory: the initial directory where the user is placed after logging in.  The value in this field is used to set the HOME environment variable." ],       
+                      [ "Login Shell",           128, "M", "", "", 
+                            "The program to run at login (if empty, use /bin/sh).  If set to a nonexistent executable, the user will be unable to login. The value in this field is used to set the SHELL environment variable." ]                      
+                    ]                
+        }       
+    ]
+}

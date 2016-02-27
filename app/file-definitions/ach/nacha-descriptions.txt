@@ -1,0 +1,545 @@
+// File and field descriptions for NACHA ACH Files.  See nacha.json for layouts.
+
+:1 The File Header Record designates physical file characteristics and identifies the immediate origin (Sending Point or ACH Operator) and destination (Receiving Point or ACH Operator) of the entries contained within the file or within the transmitted batch data. In addition, this record includes date, time, and file identification fields which can be used to uniquely identify the file.
+
+:1-1 Code identifying the File Header Record.
+:1-2 The Priority Code field is included to allow for some future scheme for priority handling of files.  At this time, a value of 01 should be used.
+:1-3 Immediate Destination contains the Routing Number of the ACH Operator or receiving point to which the file is being sent. The 10 character field begins with a blank in the first position, followed by the four digit Federal Reserve Routing Symbol, the four digit ABA Institution Identifier, and the Check Digit (bTTTTAAAAC).
+:1-4 Immediate Origin contains the Routing Number of the ACH Operator or sending point that is sending the file. The 10 character field begins with a blank in the first position, followed by the four digit Federal Reserve Routing Symbol, the four digit ABA Institution Identifier, and the Check Digit (bTTTTAAAAC).  
+
+NOTE: This field may also be mutually defined between the ODFI and Originator. For example, the ODFI may ask its Originator to put its tax identification number in this field; however, the field must contain the routing number of the sending point when the file is delivered to the ACH Operator.
+:1-5 File Creation Date, expressed in a "YYMMDD" format. 
+The File Creation Date is the date on which the file is prepared by an ODFI (ACH input files) or the date (exchange date) on which a file is transmitted from ACH Operator to ACH Operator, or from ACH Operator to RDFIs (ACH output files).
+:1-6 The File Creation Time is expressed in an "HHMM" (24 hour clock) format.
+:1-7 The File ID Modifier is provided in the File Header Record to permit multiple files created on the same date and between the same participants to be distinguished. 
+Only upper case A-Z and numeric 0-9 are permitted.
+:1-8 The Record Size Field indicates the number of characters contained in each record. At this time, the value "094" must be used.
+:1-9 The Blocking Factor defines the number of physical records within a block (a block is 940 characters). 
+For all files moving between a DFI and an ACH Operator (either way), the value "10" must be used. 
+If the number of records within the file is not a multiple of ten, the remainder of the block must be nine filled.
+:1-10 This field identifies a code to allow for future format variations.
+
+As currently defined, this field will contain a value of "1".
+:1-11 This field contains the name of the ACH or receiving point for which that file is destined.
+:1-12 This field contains the name of the ACH Operator or sending point that is sending the file.
+:1-13 This field is reserved for information pertinent to the Originator.
+
+:5 The Company/Batch Header Record identifies the Originator and briefly describes the purpose of the entry. For example, GAS BILL or REG SALARY indicates the reason for the transaction originated by the Originator. 
+The Company/Batch Header Record contains the Routing Number of the ODFI for settlement, routing of returns, and other control purposes. 
+In addition, the Company/Batch Header Record can indicate the intended effective entry date of all transactions within the batch. 
+
+The information contained in the Company/Batch Header Record applies uniformly to all subsequent Entry Detail Records in the batch.
+:5-1 Code identifying the Company/Batch Header Record.
+:5-2 The Service Class Code (BAI Specifications) identifies the general classification of dollar entries to be exchanged. 
+This standard has been recommended to facilitate inter-DFI transmission of data. 
+ACH entries have been assigned Service Class Code series 200-299.
+:5-3 The purpose of this field is to identify the source of the entry and for descriptive purposes for the Receiver. 
+Except as otherwise noted below, this field must contain the name by which the Originator is known and readily recognized by the Receiver of the entry.
+
+In a transaction in which the Originator of a debit entry is not the payee of the transaction (the party to which payment is ultimately being directed), 
+the Company Name field of the debit entry must contain the name by which the payee is known and readily recognized by the Receiver of the entry. 
+In a transaction in which the Originator of a credit entry is not the payor of the transaction (the party from which payment is ultimately being directed), 
+the Company Name field of the credit entry must contain the name by which the payor is known and readily recognized by the Receiver of the entry.
+
+ADV -  An ACH Operator is both the company and the ODFI. The ACH Operator originating the ADV file identifies himself by name in this field.
+ARC, BOC -  This field identifies the payee of the source document or the payee name indicated on the bill or invoice.
+CIE -  This field contains the Bill Payment Service Provider’s name.
+MTE -  This field identifies the owner of the terminal where the transaction was initiated.
+POP -  This field identifies the merchant with whom the Receiver initiated the transaction.
+POS -  This field identifies the merchant with whom the Receiver initiated the transaction.
+RCK -  This field identifies the Originator of the RCK entry, which is the original payee on the face of the check.
+SHR -  This field identifies the merchant with whom the Receiver initiated the transaction.
+TRC -  This field identifies the name of the keeper.
+XCK -  This field must contain the words "CHECK DESTROYED" (left justified).
+:5-4 This field in the Company/Batch Header Record allows Originators and/or ODFIs to include codes (one or more), of significance only to them, to enable specialized handling of all subsequent entries in that batch. 
+There will be no standardized interpretation for the value of the field. 
+This field must be returned intact on any return entry.
+
+CIE: This field contains the Biller’s name.
+CTX: The Originator’s bank account number may be placed in this field. This field is left justified.
+POS: The Originator (card acquirer) may place document reference numbers or other codes significant to it. The field is left justified.
+TRC: This field contains the city, state, and zip code of the keeper.
+
+:5-5 The Company Identification is an alphameric code used to identify an Originator. 
+The Company Identification Field must be included on all prenotification records and on each entry initiated pursuant to such prenotification.
+
+The Company ID may begin with the ANSI one-digit Identification Code Designators (ICD), followed by the identification number. 
+The ANSI Identification Numbers and related Identification Code Designators (ICD) are:
+IRS Employer Identification Number (EIN) "1"
+Data Universal Numbering Systems (DUNS) "3"
+User Assigned Number "9"
+CIE -  This field contains the Bill Payment Service Provider’s identification number.
+[IAT -  For IAT entries, the Company Identification Field within the Company/Batch Control Record must contain the information found within positions 41-50 (Originator Identification) of the IAT Company/Batch Header Record.] 
+MTE (Credits): The company is the ODFI.
+:5-6 This field is a mnemonic which permits various kinds of entries to be distinguished.
+:5-7 The Originator establishes the value of this field to provide a description of the purpose of the entry to be displayed back to the Receiver. 
+For example, "GAS BILL," "REG. SALARY," "INS.PREM," "SOC. SEC.," "DTC," "TRADE PAY," "PURCHASE," etc.
+
+This field must contain the word "REVERSAL" (left justified) when the batch contains reversing entries.
+
+This field must contain the word "RECLAIM" (left justified) when the batch contains reclamation entries.
+
+This field must contain the word "NONSETTLED" (left justified) when the batch contains entries which could not settle.
+
+ADV -  The company, i.e., the originating ACH Operator, uses this field to describe to the institution receiving the ADV file the type of activity to which the accounting information relates.
+ENR -  This field must contain the word "AUTOENROLL" (left justified) when the batch contains automated enrollment entries.
+RCK -  This field must contain the word "REDEPCHECK" (left justified).
+TRX -  This field contains the routing number of the keeper.
+XCK -  This field must contain the words "NO CHECK" (left justified).
+:5-8 Except as otherwise noted below, the Originator establishes this field as the date it would like to see displayed to the Receiver for descriptive purposes. 
+This field is never used to control timing of any computer or manual operation. 
+It is solely for descriptive purposes. 
+The RDFI should not assume any specific format. 
+Examples of possible entries in this field are "011392," "01 92," "JAN 13," "JAN 92," etc.
+
+MTE, POS, and SHR -  This date is the actual date the transfer was initiated by the Receiver, and formatted the same as the effective entry date (YYMMDD).
+TRC -  This field contains the film date established by the Keeper (ODFI) for checks being truncated.
+
+:5-9 The effective entry date is the date specified by the Originator on which it intends a batch of entries to be settled. 
+For credit entries, the effective entry date shall be either one or two banking days following the banking day of processing as established by the Originating ACH Operator (the processing date). 
+For debit entries, the effective entry date shall be one banking day following the processing date.
+
+Batches of entries containing an effective entry date beyond the designated number of days allowed will be rejected by the ACH Operator and returned to the ODFI. 
+If this field is blank or zero, or partially blank or partially non-numeric, or contains an incomplete date, day numbers higher than 31 or month numbers higher than 12, 
+the Originating ACH Operator shall insert the next banking day after the processing date as the effective entry date.
+
+ENR -  For Automated Enrollment entries, this field should be space filled.
+Return Entries, COR, TRC, TRX -  The ACH Operator will not edit this field.
+The scheduled Settlement Date shall be inserted by the Receiving ACH Operator. See the definition of “Settlement Date” in this Appendix Two.
+For purposes of this provision, the term “banking day” refers to a day on which the Originating ACH Operator's facility is being operated.
+:5-10 The scheduled Settlement Date for a batch of entries shall be inserted by the Receiving ACH Operator. 
+This is the date on which the Participating DFI or its correspondent is scheduled to be debited or credited by the Federal Reserve. 
+For all entries except return entries and check safekeeping entries, the Settlement Date inserted by the Receiving ACH Operator will be the same as the effective entry date 
+unless the date specified is the same as or earlier than the banking day of processing as established by the Originating ACH Operator (the processing date), 
+in which case the scheduled Settlement Date will be the next banking day following the processing date. 
+Returns, dishonored returns, and contested dishonored returns will be settled by the ACH Operator no earlier than the Effective Entry Date contained within the original entry, as it appears in the return entry Company/Batch Header Record. 
+The return of an entry that contains an invalid or stale Effective Entry Date will be settled by the ACH Operator at the earliest opportunity 
+(i.e., same banking day of processing or next banking day following the processing date. 
+Notifications of Change and TRC/TRX entries will be settled at the earliest opportunity, i.e., same banking day of processing or next banking day following the processing date. 
+For purposes of this provision, the term “banking day” refers to a day on which the Originating ACH Operator's facility is being operated.
+:5-11 This code refers to the ODFI initiating the entry.
+
+ADV -  This field will contain "0".
+:5-12 The Routing Number is used to identify the DFI originating entries within a given batch.
+
+[IAT -  For IAT entries, the Originating DFI Identification Field within the Company/Batch Control Record must contain the information found within positions 80-87 (GO/Originating DFI Identification) of the IAT Company/Batch Header Record. 
+For Inbound IAT entries, the Originating DFI Identification Field within the Fourth IAT Addenda Record must contain the National Clearing System Number of the foreign Originating DFI. For Outbound IAT entries, the Originating DFI Identification Field within the Fourth IAT Addenda Record must contain the routing number of the U.S. ODFI.] 
+
+:5-13 This number is assigned in ascending sequence to each batch by the ODFI or its Sending Point in a given file of entries. 
+Since the batch number in the Company/Batch Header Record and the Company/Batch Control Record is the same, the ascending sequence number should be assigned by batch and not by record.
+
+:5IAT-3 For forward IAT Entries, this field is left blank. For Notifications of Change related to IAT Entries, this field must contain the value "IATCOR".
+:5IAT-4 This field contains a code used to indicate the foreign exchange conversion methodology applied to an IAT Entry. 
+Use may be dependent on the particular exchange services offered by a Gateway Operator.
+:5IAT-5 This field contains a code used to indicate the content of the Foreign Exchange Reference Field. It is filled by the gateway operator.
+:5IAT-6 This field contains either the foreign exchange rate used to execute the foreign exchange conversion of an IAT Entry or another reference to the foreign exchange transaction.
+ Content is defined by the Foreign Exchange Reference Indicator Field.
+    
+If Foreign Exchange Reference Indicator is populated with 1 or 2, this will indicate the FX rate applied to the entries or a reference
+number usable by the receiver to determine the FX rate; if the Foreign Exchange Reference Indicator is 3, this field will be blank.
+:5IAT-7 This field contains the two-character code, as approved by the International Organization for Standardization (ISO), to identify the country in which the Entry is to be received.
+:5IAT-8 The Originator Identification field carries the Originator's unique identification number. 
+    
+In the case of IAT Entries where the Originator is not a natural person, this field must contain the IRS Taxpayer Identification Number (TIN) of the Originator identified in the Originator Name Field. 
+
+For an Originator that is not a natural person and is not established or organized under the laws of a State or the United States, this field must contain an identification number as defined by Treasury regulations implementing Section 326 of the USA PATRIOT Act
+:5IAT-9 The SEC Code distinguishes the various types of ACH Entries. 
+For this record, the SEC Code is 'IAT' because flow of funds and the payment instructions involve a financial agency that is not located within the territorial jurisdiction of the United States.
+:5IAT-10 The Originator establishes the value of this field to provide a description of the purpose of the entry to be displayed back to the Receiver. 
+For example, "GAS BILL," "REG. SALARY," "INS.PREM," "SOC. SEC.," "DTC," "TRADE PAY," "PURCHASE," etc.
+:5IAT-11 This field contains the three-character code, as approved by the International Organization for Standardization (ISO), to identify the currency denomination in which the Entry was first originated.
+    
+Refer to the International Organization for Standardization's website at www.iso.org for ISO currency and country code values.
+:5IAT-12 This field contains the three-character code, as approved by the International Organization for Standardization (ISO), to identify the currency denomination in which the Entry is to be received.
+    
+Refer to the International Organization for Standardization's website at www.iso.org for ISO currency and country code values.
+:5IAT-13 The effective entry date is the date specified by the Originator on which it intends a batch of entries to be settled. 
+For credit entries, the effective entry date shall be either one or two banking days following the banking day of processing as established by the Originating ACH Operator (the processing date). 
+For debit entries, the effective entry date shall be one banking day following the processing date.
+
+Batches of entries containing an effective entry date beyond the designated number of days allowed will be rejected by the ACH Operator and returned to the ODFI. 
+If this field is blank or zero, or partially blank or partially non-numeric, or contains an incomplete date, day numbers higher than 31 or month numbers higher than 12, 
+the Originating ACH Operator shall insert the next banking day after the processing date as the effective entry date.
+
+The scheduled Settlement Date shall be inserted by the Receiving ACH Operator.
+:5IAT-14 The scheduled Settlement Date for a batch of entries shall be inserted by the Receiving ACH Operator. 
+    
+This is the date on which the Participating DFI or its correspondent is scheduled to be debited or credited by the Federal Reserve. 
+    
+For all entries except return entries and check safekeeping entries, the Settlement Date inserted by the Receiving ACH Operator will be the same as the effective entry date unless the date specified is the same as or earlier than the banking day of processing as established by the Originating ACH Operator (the processing date), 
+in which case the scheduled Settlement Date will be the next banking day following the processing date.
+:5IAT-15 This code refers to the ODFI initiating the entry.
+:5IAT-16 The Routing Number is used to identify the DFI originating entries within a given batch.
+
+For IAT entries, the Originating DFI Identification Field within the Company/Batch Control Record must contain the information found within positions 80-87 (GO/Originating DFI Identification) of the IAT Company/Batch Header Record. 
+
+For Inbound IAT entries, the Originating DFI Identification Field within the Fourth IAT Addenda Record must contain the National Clearing System Number of the foreign Originating DFI. 
+
+For Outbound IAT entries, the Originating DFI Identification Field within the Fourth IAT Addenda Record must contain the routing number of the U.S. ODFI.
+:5IAT-17 This number is assigned in ascending sequence to each batch by the ODFI or its Sending Point in a given file of entries. 
+    
+Since the batch number in the Company/Batch Header Record and the Company/Batch Control Record is the same, the ascending sequence number should be assigned by batch and not by record.
+ 
+
+:6 Entry Detail Records contain that information sufficient to relate the entry to the Receiver, i.e., individual DFI account number, 
+identification number, name, and the debit or credit amount as indicated by the Transaction Code.
+
+The information in the Company/Batch Header Record must be incorporated with the Entry Detail Records to describe fully that entry and all participants in the transaction. 
+The information in the Company/Batch Header Record identifies the Originator; the Trace Number identifies the ODFI; DFI account information identifies both the RDFI and the specific account. 
+
+In addition to the basic entry format, Transaction Codes for Entry Detail Records have been defined to accommodate prenotification records, zero dollar entries, and return entries.
+Prenotifications are identical to the basic entry format but contain appropriate Transaction Codes and zeros in the Amount field. 
+Prenotifications can be batched with other dollar entries or batched separately.
+
+Zero dollar entries are identical to the basic entry format but contain appropriate Transaction Codes and zeros in the Amount field. 
+Zero dollar entries can be batched with other CCD or CTX dollar entries or batched separately. A zero dollar entry must be accompanied by at least one Addenda Record.
+
+Return entries are distinguished by special Transaction Codes and must be batched separately from other dollar entries.
+:6-1 Code identifying the Entry/Detail Record.
+:6-1 This code identifies the type of record.
+:6-2 Transaction Codes have been defined to identify various types of debit and credit entries. POS entries will utilize existing debit/credit Transaction Codes.
+:6-3 The standard Routing Number as assigned by Accuity (with Check Digit) is used to identify the DFI in which the Receiver maintains his account or a Routing Number assigned to a federal government agency by the Federal Reserve. 
+[The standard Routing Number as assigned by Accuity (with Check Digit) is used to identify the DFI in which the Receiver maintains his account or a Routing Number assigned to a Federal government agency by the Federal Reserve. 
+For IAT entries, this field contains the bank identification number of the DFI at which the Receiver maintains his account.]
+
+ENR - This field contains the Routing Number assigned to a Federal Government Agency for the purpose of the automated enrollment process. 
+Any entry with a dollar value directed to that Routing Number in error is not subject to compensation rights as provided in these Rules.
+
+:6-4 This field contains the check digit for the RT in field 6.3 (Receiving DFI Identification). 
+The Check Digit is computed using Modulus 10 as follows:
+
+(1) Multiply each digit in the Routing Number by a weighting factor. The weighting factors for each digit are:
+
+Position - 1 2 3 4 5 6 7 8
+
+Weights - 3 7 1 3 7 1 3 7
+
+(2) Add the results of the eight multiplications.
+
+(3) Subtract the sum from the next highest multiple of 10. The result is the Check Digit.
+
+Example -
+
+Routing No. -  0  7  6  4  0  1  2  5
+Multiply by -   3  7  1  3  7  1  3  7
+                   ------------------------
+Sum -             0 49 6 12 0  1  6 35 =109
+
+Check Digit = 1 (110 minus 109)
+
+:6-5 The DFI Account Number, the RDFI’s customer identification, is obtained
+from - (1) the "on-us" field of the MICR line of a voided check/share draft; (2) statement of account; (3) passbook; or (4) other source document provided by the RDFI which specifically designates the account number to be used for ACH purposes. 
+A DFI that does not use the MICR line of its checks/share drafts for ACH routing purposes (routing number and account number) is advised to print clearly the correct routing information on the face of the check/share draft.
+
+When transcribing information from the on-us field of a voided check or deposit ticket, left justify the information and enter only numbers (0 through 9) and hyphens (-). 
+If information is obtained from another source, alpha characters may be included.
+
+If the on-us field contains greater than 17 valid characters, the leftmost 17 characters are inserted in the DFI Account Number field and the remaining characters truncated, 
+e.g., "012345678901234567" will appear "01234567890123456" in the entry detail record. 
+If fewer than 17 characters, left justify and leave the unused spaces blank. 
+Spaces left within the Receiver account number should be ignored when the paperless entry is prepared, 
+e.g., "0123 456789" should appear "0123456789" in the entry detail record; "0123-4 56789" should appear "0123-456789." 
+Exact formatting of the DFI Account Number Field is essential to ensure standard positioning of account number characters when entries are received for processing at the RDFI.
+
+ADV -  Contains a 15 character DFI Account Number. The 16th and 17th positions of the DFI Account Number are used to expand the Amount field to 12 positions.
+CBR, PBR -  This field contains the Foreign Receiver’s Account Number, or the
+leftmost 17 characters if the Foreign Receiver’s Account Number exceeds 17
+characters. (NOTE -  The full Foreign Receiver’s Account Number is always expressed in the Addenda Record.) 
+[Effective September 18, 2009, this section will be removed as the CBR and PBR applications will no longer be supported by the rules.]
+ENR -  Contains information provided by the Federal Government Agency participating in the Automated Enrollment program.
+:6-6 
+:6-7 This field contains the serial number of a check.
+    
+    For ARC, BOC, POP -  This field must contain the Check Serial Number contained on the source document used for the entry.
+:6-8 Except as noted below, this field entered by the Originator provides additional identification for the Receiver and may be helpful in identifying returned entries.
+
+ADV -  Name associated with the Advice Routing Number in positions 40-48 of the Entry Detail Record.
+ARC, BOC, POP -  This field may contain the Receiver’s name or a reference number, identification number, or code that the merchant needs to identify the particular transaction or customer.
+CIE -  15 Positions - Required - This field entered by the ODFI provides additional identification for the Receiver and may be helpful in identifying returned entries. 
+Field 7, rather than Field 8, of the Entry Detail Record is used for the Individual Name.
+MTE -  15 Positions - Mandatory - Field 7, rather than Field 8, of the Entry Detail Record is used for the Individual Name.
+:6-9 This field in the Entry Detail Record allows ODFIs to include codes, of significance only to them, to enable specialized handling of the entry. 
+There will be no standardized interpretation for the value of this field. 
+It can either be a single two-character code, or two distinct one-character codes, according to the needs of the ODFI and/or Originator involved. 
+This field must be returned intact for any returned entry.
+
+CCD, CTX -  When an acknowledgment entry is requested by an Originator, this field will contain "AK".
+:6-10 This field indicates the existence of an Addenda Record. A value of "1" indicates that one or more addenda records follow, and "0" means no such record is present.
+:6-11 A Trace Number, assigned by the ODFI in ascending sequence, is included in each Entry Detail Record, Corporate Entry Detail Record, and Addenda Record. 
+Trace Numbers uniquely identify each entry within a batch in an ACH input file. 
+In association with the Batch Number, Transmission (File Creation) Date, and File ID Modifier, the Trace Number uniquely identifies an entry within a given file. 
+For Addenda Records, the Trace Number will be identical to the Trace Number in the associated Entry Detail Record, since the Trace Number is associated with an entry or item rather than a physical record.
+
+Throughout the entire processing cycle (from ODFI to RDFI) the Trace Number is retained with the entry record. The Trace Number is critical in routing returned entries from the RDFI back to the ODFI through the ACH.
+
+Since it is possible, although undesirable, for an ODFI to duplicate Trace Numbers on separate files or within different batches submitted during the same processing date, the File ID Modifier contained in the ODFI’s File Header Record should also be referenced when the ODFI is tracing returned entries.
+
+The Trace Number is constructed as follows:
+Positions
+   01--08 Routing Number of ODFI.
+   09--15 Entry Detail Sequence Number - The item number assigned in ascending order to entries within each batch. 
+Provisions should be made by the ODFI to avoid duplication of Trace Numbers if multiple data files are prepared on the same day. Trace Numbers are not required to be contiguous.
+
+:7 Addenda Record
+Addenda records will be used by the Originator to supply additional information about Entry Detail Records that will be passed from the ODFI through the ACH Operator to the RDFI. 
+Addenda records associated with the original Entry Detail Record or Corporate Entry Detail Record will not be included with any Entry Detail Record being returned. 
+[With the exception of IAT entries, addenda records associated with the original Entry Detail Record or Corporate Entry Detail Record will not be included with any Entry Detail Record being returned.] 
+Only NACHA sanctioned formats will be permitted, as specified by the Addenda Type Code. 
+Addenda record information may only be used for the purpose of transmitting payment related information. Any other use is prohibited.
+:7-1 Code identifying the Addenda Detail Record.
+
+:710 First IAT Addenda Record.
+The First IAT Addenda Record identifies the Receiver of the transaction and the dollar amount of the payment.
+:710-1 This code identifies the type of record.
+:710-2 The Addenda Type Code defines the specific interpretation and format for the Addenda Information contained in the same record.
+:710-3 A three-character code used to identify the type of transaction.
+:710-4 For Inbound IAT Entries, this field contains the amount for which the entry was originated by the Foreign ODFI in the currency denomination expressed in the Originating Currency Code Field of the Company/Batch Header Record.
+:710-5 For Inbound IAT Entries, this field contains the trace number assigned to the Entry in the originating national payments system.
+:710-6 The name of the Receiver.
+:710-7 
+:710-6 This field contains the ascending sequence number section of the Entry Detail or Corporate Entry Detail Record's trace number. 
+This number is the same as the last seven digits of the trace number of the related Entry Detail Record or Corporate Entry Detail Record.
+
+This value must be identical for each addenda record associated with a single transaction/payment. If there is another payment in this batch, this value should be sequential (e.g., 0000001, 0000002, etc.).
+
+:711 Second IAT Addenda Record.
+The Second and Third IAT Addenda Records identify key information related to the Originator of the entry. 
+:711-1 This code identifies the type of record.
+:711-2 The Addenda Type Code defines the specific interpretation and format for the Addenda Information contained in the same record.
+:711-3 The name of the Originator of the transaction.
+:711-4 The physical street address of the Originator.
+:711-5 
+:711-8 This field contains the ascending sequence number section of the Entry Detail or Corporate Entry Detail Record's trace number. 
+This number is the same as the last seven digits of the trace number of the related Entry Detail Record or Corporate Entry Detail Record.
+
+This value must be identical for each addenda record associated with a single transaction/payment. 
+If there is another payment in this batch, this value should be sequential (e.g., 0000001, 0000002, etc.).
+
+:712 Third IAT Addenda Record.
+The Second and Third IAT Addenda Records identify key information related to the Originator of the entry. 
+:712-1 This code identifies the type of record.
+:712-2 The Addenda Type Code defines the specific interpretation and format for the Addenda Information contained in the same record.
+:712-3 This field contains the city and, if applicable, the state or province of the Originator.
+    
+An asterisk ("*") must be used as the delimiter between the data elements, and the backslash ("\") must be used as the terminator following the last data element.
+:712-4 This field contains the country and postal code of the Originator.
+    
+An asterisk ("*") must be used as the delimiter between the data elements, and the backslash ("\") must be used as the terminator following the last data element.
+
+Where the country is known but the postal code is unavailable, the country should appear, immediately followed by a backslash (e.g., 'CH\'). 
+If the country is not available but the postal code is present, an asterisk should be used as a place holder, followed by the postal code and backslash (e.g., '*8001\').
+:712-5 
+:712-8 This field contains the ascending sequence number section of the Entry Detail or Corporate Entry Detail Record's trace number. 
+This number is the same as the last seven digits of the trace number of the related Entry Detail Record or Corporate Entry Detail Record.
+
+This value must be identical for each addenda record associated with a single transaction/payment. 
+If there is another payment in this batch, this value should be sequential (e.g., 0000001, 0000002, etc.).
+
+:713 Fourth IAT Addenda Record.
+The Fourth IAT Addenda Record contains information related to the financial institution originating the entry. 
+:713-1 This code identifies the type of record.
+:713-2 The Addenda Type Code defines the specific interpretation and format for the Addenda Information contained in the same record.
+:713-3 On a Domestic IAT entry, this field contains the name of the foreign ODFI.
+
+For Inbound IAT Entries, the Originating DFI Name Field within the Fourth IAT Addenda Record must contain the name of the foreign financial institution initiating the payment transaction.
+
+For Outbound IAT Entries, this field must contain the name of the U.S. ODFI.
+:713-4 This field contains a 2-digit code that identifies the numbering scheme used in the Originating DFI Identification Number field. 
+Code values for this field are:
+
+01 National Clearing System Number
+02 BIC Code
+03 IBAN
+:713-5 For Inbound IAT Entries, this field must contain the National Clearing System Number of the foreign Originating DFI. 
+
+For Outbound IAT Entries, this field must contain the routing number of the U.S. ODFI.
+:713-6 This field contains a 2-character code, as approved by the International Organization for Standardization (ISO), used to identify the country in which the branch of the bank that originated the entry is located.
+    
+On a Domestic IAT Entry, this code will identify the country in which the branch of the foreign ODFI is located.
+:713-7 
+:713-6 This field contains the ascending sequence number section of the Entry Detail or Corporate Entry Detail Record's trace number. 
+This number is the same as the last seven digits of the trace number of the related Entry Detail Record or Corporate Entry Detail Record.
+
+This value must be identical for each addenda record associated with a single transaction/payment. 
+If there is another payment in this batch, this value should be sequential (e.g., 0000001, 0000002, etc.).
+
+:714 Fifth IAT Addenda Record.
+The Fifth IAT Addenda Record identifies the Receiving Depository Financial Institution holding the Receiver's account. 
+:714-1 This code identifies the type of record.
+:714-2 The Addenda Type Code defines the specific interpretation and format for the Addenda Information contained in the same record.
+:714-3 This field contains the name of the Receiving Depository Financial Institution holding the Receiver's account.
+:714-4 This field contains a 2-digit code that identifies the numbering scheme used in the Receiving DFI Identification Number field. Code values for this field are:
+
+01 National Clearing System Number
+02 BIC Code
+03 IBAN
+:714-5 For IAT Entries, this field contains the bank identification number of the DFI at which the Receiver maintains his account.
+:714-6 This field contains a 2-character code, as approved by the International Organization for Standardization (ISO), 
+used to identify the country in which the branch of the bank that receives the entry is located.
+    
+On a Domestic IAT Entry, this code will identify the U.S. as the branch location.
+:714-7 
+:714-6 This field contains the ascending sequence number section of the Entry Detail or Corporate Entry Detail Record's trace number. 
+This number is the same as the last seven digits of the trace number of the related Entry Detail Record or Corporate Entry Detail Record.
+
+This value must be identical for each addenda record associated with a single transaction/payment. 
+If there is another payment in this batch, this value should be sequential (e.g., 0000001, 0000002, etc.).
+
+:715 Sixth IAT Addenda Record.
+The Sixth and Seventh IAT Addenda Records identify key information related to the Receiver of the entry. 
+:715-1 This code identifies the type of record.
+:715-2 The Addenda Type Code defines the specific interpretation and format for the Addenda Information contained in the same record.
+:715-3 This field may be used by the Originator to insert its own number for tracing purposes.
+:715-4 The physical street address of the Receiver.
+:715-5 
+:715-8 This field contains the ascending sequence number section of the Entry Detail or Corporate Entry Detail Record's trace number. 
+This number is the same as the last seven digits of the trace number of the related Entry Detail Record or Corporate Entry Detail Record.
+
+This value must be identical for each addenda record associated with a single transaction/payment. 
+If there is another payment in this batch, this value should be sequential (e.g., 0000001, 0000002, etc.).
+
+:716 Seventh IAT Addenda Record.
+The Sixth and Seventh IAT Addenda Records identify key information related to the Receiver of the entry. 
+:716-1 This code identifies the type of record.
+:716-2 The Addenda Type Code defines the specific interpretation and format for the Addenda Information contained in the same record.
+:716-3 This field contains the city and, if applicable, the state or province of the Receiver.
+    
+An asterisk ("*") must be used as the delimiter between the data elements, and the backslash ("\") must be used as the terminator following the last data element.
+
+In some cases, a defined data element may be unknown or may not be applicable. When the missing data element occurs last, the backslash should immediately follow the last known data element (e.g., 'ATLANTA\'). 
+When the missing data element occurs before another data element, an asterisk should be used as a place holder for the missing data element, followed by the next data element (e.g., '*GA\').
+:716-4 This field contains the country and postal code of the Receiver.
+    
+An asterisk ("*") must be used as the delimiter between the data elements, and the backslash ("\") must be used as the terminator following the last data element.
+
+Where the country is known but the postal code is unavailable, the country should appear, immediately followed by a backslash (e.g., 'CH\'). 
+If the country is not available but the postal code is present, an asterisk should be used as a place holder, followed by the postal code and backslash (e.g., '*8001\').
+:716-5 
+:716-8 This field contains the ascending sequence number section of the Entry Detail or Corporate Entry Detail Record's trace number. 
+This number is the same as the last seven digits of the trace number of the related Entry Detail Record or Corporate Entry Detail Record.
+
+This value must be identical for each addenda record associated with a single transaction/payment. 
+If there is another payment in this batch, this value should be sequential (e.g., 0000001, 0000002, etc.).
+
+:717 IAT Addenda Record for Remittance Information.
+The IAT Addenda Record for Remittance Information identifies key information related to the payment. 
+
+A maximum of two addenda records for remittance information may accompany an IAT entry. 
+
+This is typically an EDI 820 record but can be any other data agreed upon between originator and receiver.
+ 
+:717-1 This code identifies the type of record.
+:717-2 The Addenda Type Code defines the specific interpretation and format for the Addenda Information contained in the same record.
+:717-3 This field contains 80 characters of payment related information. 
+    
+In general, no specific formatting of remittance information is defined for IAT transactions, with the exception of IAT entries containing ARC, BOC, POP, or RCK in the Transaction Type Code Field within the First IAT Addenda Record.
+:717-4 This number is consecutively assigned to each Addenda Record following an Entry Detail Record. 
+    
+The first addenda sequence number must always be a "1".
+:717-5 This field contains the ascending sequence number section of the Entry Detail or Corporate Entry Detail Record's trace number. 
+This number is the same as the last seven digits of the trace number of the related Entry Detail Record or Corporate Entry Detail Record.
+
+This value must be identical for each addenda record associated with a single transaction/payment. 
+If there is another payment in this batch, this value should be sequential (e.g., 0000001, 0000002, etc.).
+ 
+
+:798 Notification of Change Addenda Record
+:798-1 This code identifies the type of record.
+:798-2 The Addenda Type Code defines the specific interpretation and format for the Addenda Information contained in the same record.
+:798-3 A standard symbol used by the RDFI to describe the reason for sending a notification of change to inform the ODFI that information has become outdated 
+or that information contained on a prenotification should be corrected.
+:798-4 The Trace Number as originally included on the entry being returned or acknowledged, or on the prenotification the RDFI is rejecting, correcting, 
+or for which a copy of the authorization is being requested. This field must be included as data in the Addenda Record for entries being returned to an ODFI.
+:798-5 
+:798-6 The Receiving DFI identification as originally included on the entry being returned or on the prenotification the RDFI is rejecting or correcting. 
+This field should be included as data in the Addenda Record for entries being returned to an ODFI.
+:798-7 The corrected data field is used by the RDFI to relay corrected customer information (i.e., DFI Account Number, Transaction Code, etc.) back to the Originator of that entry. 
+The corrected data field in an Automated Refused Notification of Change is copied from the corrected data field of the original Notification of Change.
+:798-8 
+:798-9 
+
+:799 Returns Addenda Record 
+:799-1 This code identifies the type of record.
+:799-2 The Addenda Type Code defines the specific interpretation and format for the Addenda Information contained in the same record.
+:799-3 A standard code used by an ACH Operator or RDFI to describe the reason for returning an entry. 
+In a Dishonored Return entry and Contested Dishonored Return entry, only the numeric portion of the code is used.
+:799-4 The Trace Number as originally included on the entry being returned or acknowledged, or on the prenotification the RDFI is rejecting, correcting, or for which a copy of the authorization is being requested. This field must be included as data in the Addenda Record for entries being returned to an ODFI.
+:799-5 The date of death is to be supplied on those entries being returned in the automated return item format for reason of death (return reason codes R14 and R15).
+:799-6 The Receiving DFI identification as originally included on the entry being returned or on the prenotification the RDFI is rejecting or correcting. 
+This field should be included as data in the Addenda Record for entries being returned to an ODFI.
+:799-7 Addenda Information is associated with the immediately preceding Entry Detail Record.
+
+The Addenda Information field of a Return Entry is used by the RDFI to relay explanatory information that is required with the use of Return Reason Codes "R11" (Check Truncation Return) and "R17" (File Record Edit Criteria), and to return any information contained in an Addenda Record accompanying the original entry. 
+Return entries that have been automated by the RDFI or converted to automated returns by the ACH Operator will retain the Standard Entry Class Code of the original entry (i.e., CCD, CIE, COR, CTX, ENR, [IAT,] MTE, POS, SHR, PPD, or WEB), and therefore must be identified by the transaction code and the Addenda Type Code "99".
+
+The Addenda Information Field of a Dishonored Return Entry is a mandatory field when the Dishonored Return bears Return Reason Code R69 (Field Errors). 
+When using Return Reason Code R69, the ODFI must insert the appropriate code(s) from the list below, separated by an asterisk (*), within the Addenda Information Field of the Addenda Record Format for Automated Dishonored Returns to indicate the field(s) in which the errors occur:
+
+01 Return Contains Incorrect DFI Account Number
+02 Return Contains Incorrect Original Entry Trace Number
+03 Return Contains Incorrect Dollar Amount
+04 Return Contains Incorrect Individual Identification Number/Identification Number
+05 Return Contains Incorrect Transaction Code
+06 Return Contains Incorrect Company Identification Number
+07 Return Contains an Invalid Effective Entry Date (For example: 01*03*06)
+
+:8 The Company/Batch Control Record contains the counts, hash totals, and total dollar controls for the preceding detail entries within the indicated batch.
+All Entry Detail Records are hashed. 
+Both Entry Detail Records and Addenda Records are included in the entry/addenda counts; Batch Header and Batch Control Records are not included.
+:8-1 Code identifying the Company/Batch Control Record.
+:8-2 The Service Class Code (BAI Specifications) identifies the general classification of dollar entries to be exchanged. 
+This standard has been recommended to facilitate inter-DFI transmission of data. ACH entries have been assigned Service Class Code series 200-299.
+:8-3 This count is a tally of each Entry Detail Record and each Addenda Record processed within the batch.
+:8-4 The Receiving DFI Identification in each Entry Detail Record is hashed to provide a check against inadvertent alteration of data contents due to hardware failure or program error. (NOTE: Addenda Records are not hashed.)
+
+Company/Batch Control Record: The Entry Hash is the sum of the Receiving DFI Identification fields in Entry Detail Records in the batch. 
+This field contains the 8-digit routing number of the receiving depository institution. 
+The hash is the arithmetic sum of the 8-digit routing numbers, with overflow out of the high order (leftmost) position ignored.
+
+File Control Record: The Entry Hash is the sum of corresponding fields in the Company/Batch Control Records on the file.
+:8-5 This field contains the accumulated Entry Detail debit total within a given batch (Company/Batch Control Record).
+:8-6 This field contains the accumulated Entry Detail credit total within a given batch (Company/Batch Control Record).
+:8-7 The Company Identification is an alphameric code used to identify an Originator. 
+The Company Identification Field must be included on all prenotification records and on each entry initiated pursuant to such prenotification.
+
+The Company ID may begin with the ANSI one-digit Identification Code Designators (ICD), followed by the identification number. 
+The ANSI Identification Numbers and related Identification Code Designators (ICD) are:
+IRS Employer Identification Number (EIN) "1"
+Data Universal Numbering Systems (DUNS) "3"
+User Assigned Number "9"
+CIE -  This field contains the Bill Payment Service Provider’s identification number.
+[IAT -  For IAT entries, the Company Identification Field within the Company/Batch Control Record must contain the information found within positions 41-50 (Originator Identification) of the IAT Company/Batch Header Record.] 
+MTE (Credits) -  The company is the ODFI.
+:8-8 The MAC is an eight character code derived from a special key used in conjunction with the DES algorithm. 
+The purpose of the MAC is to validate the authenticity of ACH entries. 
+The DES algorithm and key message standards must be in accordance with standards adopted by the American National Standards Institute. 
+The remaining eleven characters of this field are blank.
+:8-9 
+:8-10 The Routing Number is used to identify the DFI originating entries within a given batch.
+
+[IAT -  For IAT entries, the Originating DFI Identification Field within the Company/Batch Control Record must contain the information found within positions 80-87 (GO/Originating DFI Identification) of the IAT Company/Batch Header Record. 
+For Inbound IAT entries, the Originating DFI Identification Field within the Fourth IAT Addenda Record must contain the National Clearing System Number of the foreign Originating DFI. 
+For Outbound IAT entries, the Originating DFI Identification Field within the Fourth IAT Addenda Record must contain the routing number of the U.S. ODFI.] 
+
+:8-11 This number is assigned in ascending sequence to each batch by the ODFI or its Sending Point in a given file of entries. 
+Since the batch number in the Company/Batch Header Record and the Company/Batch Control Record is the same, the ascending sequence number should be assigned by batch and not by record.
+ 
+
+:9 The File Control Record contains dollar, entry, and hash total accumulations from the Company/Batch Control Records in the file. 
+This record also contains counts of the number of blocks and the number of batches within the file (or batched data transmitted to a single destination).
+:9-1 Code identifying the File Control Record.
+:9-2 The value of this field must be equal to the number of Company/Batch Header Records in the file.
+:9-3 The Block Count contains the number of physical blocks (a block is 940 characters) in the file, including both the File Header and File Control Records.
+:9-4 This count is a tally of each Entry Detail Record and each Addenda Record processed within the file.
+:9-5 The Receiving DFI Identification in each Entry Detail Record is hashed to
+provide a check against inadvertent alteration of data contents due to
+hardware failure or program error. (NOTE - Addenda Records are not hashed.)
+
+Company/Batch Control Record - The Entry Hash is the sum of the Receiving DFI Identification fields in Entry Detail Records in the batch. 
+This field contains the 8-digit routing number of the receiving depository institution. 
+The hash is the arithmetic sum of the 8-digit routing numbers, with overflow out of the high order (leftmost) position ignored.
+
+File Control Record - The Entry Hash is the sum of corresponding fields in the Company/Batch Control Records on the file.
+:9-6 This field contains the accumulated Company/Batch Control Record debit totals within a given file.
+:9-7 This field contains the accumulated Company/Batch Control Record credit totals within a given file.
+

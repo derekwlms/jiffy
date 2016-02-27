@@ -1,0 +1,57 @@
+{
+    "type": "BCH",
+    "name": "Branch Lookup",
+    "format": "csv",         
+    "suffixes": ["bch"],
+    "records": [{
+            "type": "H",
+            "name": "Header Record",
+            "fields": [
+                ["Record Type"],
+                ["Version ID"],
+                ["File ID"],
+                ["Update Date"],
+                ["Create Date"],
+                ["Create Time"],
+                ["Reserved 1"],
+                ["Reserved 2"],
+                ["Reserved 3"],
+                ["Reserved 4"],
+                ["Reserved 5"]
+            ]
+        },
+
+        {
+            "type": "Detail",
+            "name": "Detail Record",
+            "parent": "H",            
+            "fields": [
+                ["Branch Number"],
+                ["Bank Number"],
+                ["Name"],
+                ["Contact Name"],
+                ["Contact Phone"],
+                ["Contact Fax"],
+                ["Contact Email"],
+                ["Notify Flag"],
+                ["Comments"],
+                ["Address 1"],
+                ["Address 2"],
+                ["City"],
+                ["State"],
+                ["Country"],
+                ["Postal Code"],
+                ["Reserved 1"],
+                ["Reserved 2"],
+                ["Reserved 3"],
+                ["Reserved 4"],
+                ["Reserved 5"],
+                ["Reserved 6"],
+                ["Reserved 7"],
+                ["Reserved 8"],
+                ["Reserved 9"],
+                ["Reserved 10"]
+            ]
+        }
+    ]
+}

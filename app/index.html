@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="no-js">
+    
+  <head>
+    <meta charset="utf-8">
+    <title>Jiffy</title>
+    <meta name="description" content="Jiffy - JavaScript File Editor">
+    <meta name="copyright" content="Derek Williams">      
+    <meta name="viewport" content="width=device-width">
+    <!-- Only using bootstrap CSS (for JS, using UI Bootstrap instead). Later try to get bower+wiredep to figure that out -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+    
+  <body ng-app="jiffy">
+      
+    <!--[if lt IE 9]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <header>
+        <div id="navbar" data-ui-view="navbar"></div>
+    </header>          
+
+    <div class="container-fluid">
+        
+        <div class="col-xs-4">
+            <nav id="records-pane" class="editor-pane">
+                <div id="records-tree" data-ui-view="records"></div>
+            </nav>   
+        </div>
+        <div class="col-xs-8">   
+            <section id="record-description-pane" class="editor-pane">
+                <div><div id="record-description" data-ui-view="recordDescription"></div></div>
+            </section>
+            <section id="fields-pane" class="editor-pane">
+                <div><div id="fields-list" data-ui-view="fieldsList"></div></div>
+            </section>   
+            <section id="field-description-pane" class="editor-pane">
+                <div><div id="field-description" data-ui-view="fieldDescription"></div></div>
+            </section>   
+        </div>
+
+    </div>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/ui-states.js"></script>  
+    <script src="scripts/controllers/navbar-controller.js"></script>       
+    <script src="scripts/controllers/records-controller.js"></script> 
+    <script src="scripts/controllers/record-description-controller.js"></script>  
+    <script src="scripts/controllers/fields-controller.js"></script>  
+    <script src="scripts/controllers/field-description-controller.js"></script>    
+    <script src="scripts/controllers/file-open-controller.js"></script>    
+    <script src="scripts/controllers/file-save-as-controller.js"></script>         
+    <script src="scripts/directives/file-drop-directive.js"></script>  
+    <script src="scripts/models/file-editor-model.js"></script>        
+    <script src="scripts/services/definitions/field-definition.js"></script>  
+    <script src="scripts/services/definitions/record-definition.js"></script>  
+    <script src="scripts/services/definitions/file-definition.js"></script> 
+    <script src="scripts/services/definitions/field-description.js"></script>       
+    <script src="scripts/services/definitions/definitions-service.js"></script>         
+    <script src="scripts/services/parser/field.js"></script>        
+    <script src="scripts/services/parser/record.js"></script>        
+    <script src="scripts/services/parser/file.js"></script>          
+    <script src="scripts/services/parser/file-parser.js"></script>   
+    <script src="scripts/services/parser/csv-parser.js"></script>         
+    <script src="scripts/services/parser/file-formatter.js"></script>       
+    <script src="scripts/services/file-service.js"></script>      
+    <!-- endbuild -->
+      
+   </body>
+    
+</html>

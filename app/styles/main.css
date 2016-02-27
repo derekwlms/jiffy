@@ -1,0 +1,134 @@
+body {
+    background-color: #f5f5f5;
+}
+.navbar {
+    background-color: #f5f5f5;
+}
+.logo-image {
+    position: relative;
+    top: -14px;
+}
+
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+.editor-pane {
+    border-style: solid;    
+    border-width: thin;    
+    border-color: lightgray;  
+    margin: 5px;    
+    padding: 5px;
+    overflow-y: scroll;
+}
+
+#records-pane {
+    height: 80vh;
+}
+
+#record-description-pane {
+    height: 11vh;
+}
+
+#fields-pane {
+    height: 50vh;
+}
+
+#field-description-pane {
+    height: 18vh;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}    
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#file-drop {
+    border: 2px dashed #bbb;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 25px;
+    text-align: center;
+    font: 20pt bold 'Vollkorn';
+    color: #bbb;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+.dropdown-submenu.pull-left {
+    float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+a.disabled {
+    color: lightgray !important;
+}
+
+.selected-record {
+    font-weight: bold;
+}
+.selected-field {
+    font-weight: bold;
+}
+.invalid-record {
+    color: firebrick;
+}
+
+input.ng-invalid {
+    border: 1px solid red;
+    background-color: #fed8d8;
+}

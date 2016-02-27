@@ -1,0 +1,49 @@
+{
+    "type": "MDF",
+    "name": "Check Recovery MDF",
+    "format": "csv",        
+    "suffixes": ["mdf", "mfi"],
+    "records": [{
+            "type": "H",
+            "name": "Header Record",
+            "fields": [
+                ["Bank Name"],
+                ["DateTime"],
+                ["Record Count"]
+            ]
+        },
+        {
+            "type": "D",
+            "name": "Document Record",
+            "parent": "H",             
+            "fields": [
+                ["Indicator A"],
+                ["Indicator B"],
+                ["Indicator C"],
+                ["Active Date"],
+                ["Merchant Name"],
+                ["Merchant Address 1"],
+                ["Merchant Address 2"],
+                ["Merchant City"],
+                ["Merchant State"],
+                ["Merchant ZIP"],
+                ["Merchant Contact"],
+                ["Merchant Phone"],
+                ["Merchant Fax"],
+                ["Merchant email"],
+                ["Bank Name"],
+                ["Bank Address"],
+                ["Bank City"],
+                ["Bank State"],
+                ["Tax ID Number"],
+                ["Merchant Account Number"],
+                ["Merchant Account 2"],
+                ["Merchant Bank Routing Number"],
+                ["Merchant SICCODE"],
+                ["memo 1"],
+                ["memo 2"],
+                ["memo 3"]
+            ]
+        }
+    ]
+}

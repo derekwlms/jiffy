@@ -1,0 +1,48 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Open File</h3>
+    </div>
+    <div class="modal-body">
+        <div>
+            <p>Select a file to open...</p>    
+            <!-- Ugly approach until angular supports file input binding -->
+            <!-- Chrome's implementation of the accept attribute is limited ('Custom Files'). Edge is better -->
+            <span class="btn btn-default btn-file">
+                <input type="file" 
+                       accept="{{model.fileAcceptTypes}}"
+                       id="fileSelectInput" 
+                       name="files[]" 
+                       onchange="angular.element(this).scope().fileSelected(this.files[0])" />
+                <span class="glyphicon glyphicon-folder-open"></span>&nbsp; Browse...
+            </span>
+            <hr />
+
+            <p>Or drag and drop a file</p>              
+            <div file-drop id="file-drop" file="model.selectedFile" file-name="model.selectedFileName">Drop file here</div>    
+            <output id="list"></output>  
+            
+            <div class="alert alert-danger" data-ng-hide="model.isFileApiAvailable" role="alert">
+                The File APIs are not fully supported in this browser. Please use Chrome, Edge, or Opera.
+            </div>  
+            <div class="alert alert-danger" data-ng-show="model.errorMessage" role="alert">
+                <span class="close" data-ng-click="model.errorMessage = null">&times;</span>
+                {{model.errorMessage}}
+            </div>              
+            
+            <hr />            
+            <div class="alert alert-success" role="alert">
+                <p>Selected file: <strong>{{model.selectedFileName}}<strong></p>
+            </div>
+                    
+            <div>
+                <p>File type: <select data-ng-model="model.selectedFileDefinition" 
+                                      ng-options="def.displayString for def in model.fileDefinitions"></select></p>                
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <!-- button class="btn btn-default" type="button" data-ng-click="$('#fileSelectInput').click()">Select File</button -->        
+        <button class="btn btn-primary" type="button" data-ng-disabled="model.errorMessage || !model.selectedFileDefinition" data-ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" data-ng-click="cancel()">Cancel</button>
+    </div>
+</div> 

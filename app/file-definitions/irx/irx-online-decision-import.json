@@ -1,0 +1,53 @@
+{
+    "type": "ROD",
+    "name": "Online Decision Import",
+    "format": "fixed", "recordLength": 200,       
+    "suffixes": ["rod"],
+    "records": [{
+            "type": "H",
+            "name": "Header Record",
+            "fields": [
+                ["Rec Type", 1],
+                ["Version ID", 2],
+                ["File ID", 10],
+                ["Posting Date", 8],
+                ["Create Date", 8],
+                ["Create Time", 6],
+                ["Reserved  / Filler", 165]
+            ]
+        },
+
+        {
+            "type": "I",
+            "name": "Item Record",
+            "parent": "H",                 
+            "fields": [
+                ["Rec Type", 1],
+                ["Item ID", 18],
+                ["Site", 10],
+                ["Deposit Account Bank", 5],
+                ["Deposit Account", 20],
+                ["Deposit Amount", 12],
+                ["Serial #", 12],
+                ["Maker Account Number", 20],
+                ["Decision", 1],
+                ["RCK Flag", 1],
+                ["Processing Date", 8],
+                ["Customer ID", 32],
+                ["Decision Timestamp", 14],
+                ["Reserved  / Filler", 46]
+            ]
+        },
+
+        {
+            "type": "T",
+            "name": "Totals Record",
+            "fields": [
+                ["Rec Type", 1],
+                ["Item Count", 8],
+                ["Item Amount", 14],
+                ["Reserved  / Filler", 377]
+            ]
+        }
+    ]
+}

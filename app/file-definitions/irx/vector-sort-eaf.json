@@ -1,0 +1,51 @@
+{   "comment": "IRX data for a VECTOR:Sort Element Activity File (EAF)",
+ 
+    "type": "EAF", "name": "IRX VECTOR:Sort EAF data", "format": "fixed", "recordLength": 200, "suffixes": [ "eaf" ],
+    "description": "VECTOR:Sort subpass fine sort data. Converted to a packed EAF by NBRVEC02.",
+ 
+    "records": [
+        { "type": "H", "name": "File Header", "description": "Contains subpass fine sort job information.",
+          "fields": [ [ "Record Type Code",        1, "M", "H", "H", "Record Type - H for Header Record." ],
+                      [ "Bank Number",             5, "M", "N", "",  "Bank number, converted to signed packed (COMP-3) by NBRVEC02." ],
+                      [ "Job Name",                8, "M", "ANC", "" ],
+                      [ "Sequence Check Option",   1, "M", "A", "" ],
+                      [ "Posting Date",            8, "M", "YYYYMMDD", "" ],   
+                      [ "Capture Count",          10, "M", "N",   "" ],  
+                      [ "Host ID",                 5, "M", "AN",  "" ], 
+                      [ "Site",                   10, "M", "ANC", "" ],   
+                      [ "Pass IDs",               14, "M", "AN", "" ],    
+                      [ "Filler",                 138, "O", "", "", "Reserved for possible future use." ]]                
+        },
+        
+        { "type": "D", "parent": "H", "name": "Detail Record", 
+          "fields": [ [ "Record Type Code",        1, "M", "D", "D" ],
+                      [ "Sort Argument",          30, "M", "N", ""  ],
+                      [ "Volume",                  8, "M", "N", "" ],
+                      [ "Divider Flag",            1, "M", "A", "" ],    
+                      [ "High Volume Kill Flag",   1, "M", "A", "" ],   
+                      [ "Cycle Segment",           4, "M", "N", "" ],   
+                      [ "Account Truncation Flag", 1, "M", "A", "" ],   
+                      [ "Posting Account Number", 16, "M", "N", "" ],   
+                      [ "Related Account Number", 16, "M", "N", "" ],   
+                      [ "Control Divider Flags",  10, "M", "N", "" ],   
+                      [ "User Exit Flag",          1, "M", "A", "" ],   
+                      [ "User Sort Key",          16, "M", "N", "" ],   
+                      [ "Sort Key Indicators",    10, "M", "N", "" ],   
+                      [ "Segment Break",           1, "M", "A", "" ],   
+                      [ "Sort - Decision",         1, "M", "N", "",
+                            "Sort decision code", [],
+                            [ "0 = Defer", "1 = Charge Back", "2 = Redeposit", "3 = Re-clear", "4 = RCK - Hold", "5 = RCK - Return",
+                              "8 = Advice Data File", "9 = Priority Account"]],  
+                      [ "Sort - Return Reason",    2, "M", "N", "" ],  
+                      [ "Sort - Depost Account #", 20, "M", "N", "" ],    
+                      [ "Sort - Prime Reject",     1, "M", "A", "" ],  
+                      [ "Sort - Defer to EOD #",   1, "M", "A", "" ],  
+                      [ "Sort - Overdraft",        1, "M", "A", "" ],  
+                      [ "Sort - Account Group",    2, "M", "A", "" ], 
+                      [ "Advice Control #",        7, "M", "AN", "" ], 
+                      [ "MICR Fields",            45, "M", "AN", "" ], 
+                      [ "Advice Type",             1, "M", "AN", "" ],    
+                      [ "Filler",                  1, "O", "AN", "" ]]   
+        }        
+    ]
+}

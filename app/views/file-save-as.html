@@ -1,0 +1,21 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Save As</h3>
+    </div>
+    <div class="modal-body">
+        <label for="filename">Filename</label>
+        <input type="text" 
+               class="form-control"
+               data-ng-model="model.filename"
+               id="filename"
+               name="filename">            
+
+        <div class="alert alert-danger" data-ng-hide="model.isFileApiAvailable" role="alert">
+            The File APIs are not fully supported in this browser. Please use Chrome, Edge, or Opera.
+        </div>              
+    </div>
+    <div class="modal-footer">           
+        <button class="btn btn-primary" type="button" data-ng-disabled="!model.filename" data-ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" data-ng-click="cancel()">Cancel</button>        
+    </div>
+</div> 

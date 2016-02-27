@@ -1,0 +1,38 @@
+{
+    "type": "CRE",
+    "name": "Check Recovery Enrollment",
+    "format": "csv",       
+    "suffixes": ["cre", "crn"],
+    "records": [{
+            "type": "H",
+            "name": "Header Record",
+            "fields": [
+                ["Record Type"],
+                ["Version ID"],
+                ["File ID"],
+                ["Date/time"],
+                ["Record Count"],
+                ["Reserved 1"],
+                ["Reserved 2"],
+                ["Reserved 3"]
+            ]
+        },
+        {
+            "type": "D",
+            "name": "Detail Record",
+            "parent": "H",                 
+            "fields": [
+                ["Record Type"],
+                ["Account Number"],
+                ["Bank Number"],
+                ["Application Code"],
+                ["Enrollment Flag"],
+                ["Effective Date"],
+                ["Tax ID Number"],
+                ["Reserved 1"],
+                ["Reserved 2"],
+                ["Reserved 3"]
+            ]
+        }
+    ]
+}

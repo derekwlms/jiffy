@@ -1,0 +1,42 @@
+{   "type": "ALL", "name": "IRX All Items File", "format": "csv", "suffixes": [ "all", "aif", "pmt", "lbx" ],
+    "description": "IRX All Items / Payment Items File",
+ 
+    "records": [
+        { "type": "H", "name": "File Header", 
+          "fields": [ [ "Record Type Code",        1, "M", "H", "H", "Record Type - H for Header Record.", ["readonly"] ],
+                      [ "Version ID",              2, "M", "N", "",  "File version.  Typically '11' " ],
+                      [ "File ID",                30, "M", "CS-NBR-ALL", "CS-NBR-ALL", "File identifier.  Typically 'CS-NBR-ALL' " ],
+                      [ "Update Date",             8, "M", "YYYYMMDD", "" ],   
+                      [ "Create Date",             8, "M", "YYYYMMDD", "" ],   
+                      [ "Create Time",             6, "M", "HHMMSS", "" ],                       
+                      [ "Reserved 1",              1, "O", "",   "" ],  
+                      [ "Reserved 2",              1, "O", "",   "" ],    
+                      [ "Reserved 3",              1, "O", "",   "" ],      
+                      [ "Reserved 4",              1, "O", "",   "" ],    
+                      [ "Reserved 5",              1, "O", "",   "" ]]                
+        },
+        
+        { "type": "Detail", "parent": "H", "name": "Detail Record", 
+          "fields": [ [ "Item Number",            10, "M", "N", "" ],
+                      [ "Transaction ID",         10, "M", "N", ""  ],
+                      [ "Capture Sequence Number", 20, "M", "N", ""  ],                     
+                      [ "Bank Number",             5, "M", "N", "" ],
+                      [ "Application Code",        3, "M", "AN", "" ],    
+                      [ "Serial",                 12, "O", "N", "" ],   
+                      [ "Optional Field 6",       10, "O", "N", "" ],   
+                      [ "Routing/Transit",         9, "M", "N", "" ],  
+                      [ "Optional Field 4",       10, "O", "N", "" ],    
+                      [ "Account Number",         20, "M", "N", "" ],  
+                      [ "Process Control",        12, "O", "N", "" ],      
+                      [ "Amount",                 14, "M", "[0-9.]+", "" ],   
+                      [ "Credit Flag",             1, "M", "Y|N", "" ],   
+                      [ "Credit Order",            1, "M", "N", "", "1 is Credit First" ],   
+                      [ "Multi-item Deposit Flag", 1, "M", "Y|N", "" ],    
+                      [ "Out-of-Balance Flag",     1, "M", "Y|N", "" ],   
+                      [ "Deposit Item Number",    10, "M", "N", "", 
+                                "Item Number of the deposit account credit record" ],                        
+                      [ "Payment Data",           255, "O", "", "" ],   
+                      [ "Extended Capture Seq Number", 20, "M", "N", ""  ]]   
+        }        
+    ]
+}

@@ -1,0 +1,59 @@
+{
+    "type": "IOD",
+    "name": "IRX Online Decision Items",
+    "format": "fixed", "recordLength": 400,    
+    "suffixes": ["iod"],
+    "records": [{
+            "type": "H",
+            "name": "Header Record",
+            "fields": [
+                ["Rec Type", 1],
+                ["Version ID", 2],
+                ["File ID", 10],
+                ["Unique ID", 4],
+                ["Posting Date", 8],
+                ["Create Date", 8],
+                ["Create Time", 6],
+                ["Reserved  / Filler", 163]
+            ]
+        },
+
+        {
+            "type": "I",
+            "parent": "H",            
+            "name": "Item Record",
+            "fields": [
+                ["Rec Type", 1],
+                ["Item ID", 18],
+                ["Site", 10],
+                ["Deposit Account Bank", 5],
+                ["Deposit Account", 20],
+                ["Item MICR Amount", 12],
+                ["Item MICR Serial", 12],
+                ["Item MICR Account", 20],
+                ["Deposit Date", 8],
+                ["Deposit Amount", 14],
+                ["Store #", 14],
+                ["Return Reason Code", 5],
+                ["Return Reason Des", 25],
+                ["Decision", 1],
+                ["Processing Date", 8],
+                ["Charge Account Bank #", 5],
+                ["Charge Account #", 20],
+                ["Image Key", 47],
+                ["Reserved  / Filler", 155]
+            ]
+        },
+
+        {
+            "type": "T",
+            "name": "Totals Record",
+            "fields": [
+                ["Rec Type", 1],
+                ["Item Count", 8],
+                ["Item Amount", 14],
+                ["Reserved  / Filler", 377]
+            ]
+        }
+    ]
+}

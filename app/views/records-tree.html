@@ -1,0 +1,49 @@
+<div>
+    <ul class="list-group">
+        <li data-ng-repeat="record in uiModel.currentFile.recordsTree">
+            <span id="{{record.elementId}}" 
+                  data-ng-click="showRecord(record)" 
+                  data-ng-class="{ 'selected-record': record.isSelected, 'invalid-record': !record.isValid }">
+                {{record.displayString}}
+            </span>
+            <ul>
+                <li data-ng-repeat="child in record.children">
+                    <span id="{{child.elementId}}" 
+                          data-ng-click="showRecord(child)" 
+                          data-ng-class="{ 'selected-record': child.isSelected, 'invalid-record': !child.isValid }">
+                        {{child.displayString}}
+                    </span>
+                    <ul>                    
+                        <li data-ng-repeat="grandChild in child.children">
+                            <span id="{{grandChild.elementId}}" 
+                                  data-ng-click="showRecord(grandChild)" 
+                                  data-ng-class="{ 'selected-record': grandChild.isSelected, 'invalid-record': !grandChild.isValid }">
+                                {{grandChild.displayString}}
+                            </span>
+                            <ul>                    
+                                <li data-ng-repeat="greatGrandChild in grandChild.children">
+                                    <span id="{{greatGrandChild.elementId}}" 
+                                          data-ng-click="showRecord(greatGrandChild)" 
+                                          data-ng-class="{ 'selected-record': greatGrandChild.isSelected, 
+                                                           'invalid-record': !greatGrandChild.isValid }">
+                                        {{greatGrandChild.displayString}}
+                                    </span>
+                                    <ul>
+                                        <li data-ng-repeat="ggreatGrandChild in greatGrandChild.children">
+                                            <span id="{{ggreatGrandChild.elementId}}" 
+                                                  data-ng-click="showRecord(ggreatGrandChild)" 
+                                                  data-ng-class="{ 'selected-record': ggreatGrandChild.isSelected, 
+                                                                   'invalid-record': !ggreatGrandChild.isValid }">
+                                                {{ggreatGrandChild.displayString}}
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </li>      
+                            </ul>                            
+                        </li>      
+                    </ul>
+                </li>                
+            </ul>
+        </li>
+    </ul>
+</div>

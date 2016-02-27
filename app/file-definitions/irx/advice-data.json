@@ -1,0 +1,121 @@
+{
+    "type": "ADV",
+    "name": "Advice Data File",
+    "format": "csv",     
+    "suffixes": ["adv"],
+    "records": [{
+            "type": "F",
+            "name": "File Header Record",
+            "fields": [
+                ["Record Type"],
+                ["Version"],
+                ["File ID"],
+                ["Processing Date"],
+                ["Host ID"],
+                ["Site"],
+                ["Create Time"]
+            ]
+        },
+        {
+            "type": "T",
+            "name": "Trailer Record",
+            "fields": [
+                ["Record Type"],
+                ["Record Count"],
+                ["Advice Header Count"],
+                ["Advices Count"]
+            ]
+        },
+        {
+            "type": "B",
+            "name": "Bank Header Record",
+            "parent": "F",             
+            "fields": [
+                ["Record Type"],
+                ["Charge Bank Number"],
+                ["Bank Name"],
+                ["Address"]
+            ]
+        },
+        {
+            "type": "H",
+            "parent": "F",             
+            "name": "Advice Header Record",
+            "fields": [
+                ["Record Type"],
+                ["Create Timestamp"],
+                ["Processing Date"],
+                ["Charge Bank Number"],
+                ["Deposit Account Number"],
+                ["Account Status"],
+                ["Address"],
+                ["Country"],
+                ["Redeposit Total"],
+                ["Available Balance"],
+                ["OD Flag"],
+                ["Frozen Flag"],
+                ["Analysis Flag"],
+                ["Charge Appl Code"],
+                ["Store Number"],
+                ["Charge Account Number"],
+                ["Charge Total"],
+                ["Advice Counter"],
+                ["Images"],
+                ["Product Code"],
+                ["Sub Product Code"],
+                ["Line of Business"],
+                ["Highest Risk Indicator"],
+                ["Reserved 1"],
+                ["Reserved 2"]
+            ]
+        },
+        {
+            "type": "I",
+            "name": "Advice Item Record",
+            "parent": "H",             
+            "fields": [
+                ["Record Type"],
+                ["Combined Advice"],
+                ["Deposit Bank Number"],
+                ["Deposit Account Number"],
+                ["Deposit Application"],
+                ["Deposit Date"],
+                ["Deposit Sequence"],
+                ["Redeposit Flag"],
+                ["Return Reason"],
+                ["Capture Sequence Num"],
+                ["Amount"],
+                ["Charge Application"],
+                ["Store Number"],
+                ["Priority Code"],
+                ["Roll-UP Flag"],
+                ["Print Redeposit Flag"],
+                ["Fee"],
+                ["Hold over Flag"],
+                ["Disposition"],
+                ["Advice Sort Control"],
+                ["Maker Name"],
+                ["Maker Flag"],
+                ["Maker Serial"],
+                ["Maker ABA"],
+                ["Maker Account"],
+                ["Maker PC"],
+                ["CIF Store #"],
+                ["Document Type"],
+                ["Document Source"],
+                ["RCK Flag"],
+                ["Document Destination"],
+                ["Opt Field 6"],
+                ["Advice Flags"],
+                ["Represent Count"],
+                ["BOFD"],
+                ["Returned Item Type"],
+                ["IRDType"],
+                ["Item ID"],
+                ["External Return Reason"],
+                ["Risk Indicator"],
+                ["Reserved 1"]
+            ]
+        }
+    ]
+}

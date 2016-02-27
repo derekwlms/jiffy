@@ -1,0 +1,21 @@
+@ngdoc overview
+@name Jiffy Overview
+@description
+# Jiffy - JavaScript File Editor
+
+Jiffy is a flat file editor written in JavaScript.  It's a quick, easy way to view and edit your data files using only a browser. 
+
+Jiffy uses the [JavaScript File API](https://www.w3.org/TR/file-upload/) so that everything is done locally.  Your file data is kept private and never sent to a server.  It supports [modern HTML5 browsers](http://caniuse.com/#feat=fileapi).
+
+JSON files define file layouts, data types, and formats.  Use these to teach Jiffy your own custom file formats without writing any code.  For details, see the [wiki](https://github.com/derekwlms/jiffy/wiki).  Jiffy includes definitions for formats such as NACHA ACH files.
+
+## Defining Files
+
+Jiffy parses files based on file, record, and field definitions stored in definition files.
+To add your own file/record formats, do the following:
+  - Create a definition JSON file under app/file-definitions.
+    - This defines the record and field layouts for your file type.
+    - See the existing json files as examples.
+    - Use JSONLint to verify that your definitions are well-formed.
+  - Edit *definition-names.txt* and add your filename to it.
+  - Refresh Jiffy in the browser and start editing your files!

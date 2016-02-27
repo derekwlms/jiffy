@@ -1,0 +1,13 @@
+{   "type": "crontab", "name": "Unix crontab", "format": "delimited", "fieldDelimiter": " ", "suffixes": [ "crontab" ],
+ 
+    "records": [
+        { "type": "Cron", "name": "Cron Schedule Record", 
+          "fields": [ [ "Minutes",               20, "M", "[0-9*,-]+", "*" ],
+                      [ "Hour",                  20, "M", "[0-9*,-]+", "*" ],
+                      [ "Day of Month",          20, "M", "[0-9*,-?LW]+", "*" ],  
+                      [ "Month",                 20, "M", "[0-9A-Za-z*,-]+", "*" ],                       
+                      [ "Day of Week",           20, "M", "[0-9A-Za-z*,-?L#]+", "*" ],      
+                      [ "Command to Run",       128, "M",  "", "" ]]                
+        }       
+    ]
+}

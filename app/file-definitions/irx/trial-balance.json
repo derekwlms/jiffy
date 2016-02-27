@@ -1,0 +1,49 @@
+{
+	"type": "BAL",
+	"name": "Trial Balance",
+    "format": "csv",     
+	"suffixes": ["bal"],
+	"records": [{
+			"type": "H",
+			"name": "Header Record",
+			"fields": [
+				["Record Type"],
+				["Version ID"],
+				["File ID"],
+				["Update Date"],
+				["Create Date"],
+				["Create Time"],
+				["Load Method"],
+				["Host ID"],
+				["Site"],
+				["Reserved 1"],
+				["Reserved 2"],
+				["Reserved 3"],
+				["Reserved 4"]
+			]
+		},
+
+		{
+			"type": "D",
+			"name": "Detail Record",
+            "parent": "H",            
+			"fields": [
+				["Record ID"],
+				["Account Number"],
+				["Bank Number"],
+				["Application Code"],
+				["Acct Status"],
+				["Balance Date"],
+				["Trial Balance"],
+				["Pending Holds"],
+				["Pending Credits"],
+				["Pending Debits"],
+				["Branch Number"],
+				["Maintenance Code"],
+				["Record Timestamp"],
+				["Reserved 1"],
+				["Reserved 2"]
+			]
+		}
+	]
+}

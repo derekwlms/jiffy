@@ -1,0 +1,54 @@
+{
+    "type": "CCM",
+    "name": "Check Conversion Maintenance File",
+    "format": "fixed", "recordLength": 400,       
+    "suffixes": ["ccm"],
+    "records": [{
+            "type": "H",
+            "name": "Header Record",
+            "fields": [
+                ["Record Type", 2],
+                ["File ID / Version", 15],
+                ["Processing Date", 9],
+                ["File Creation Date", 9],
+                ["File Creation Time", 5],
+                ["Processing Site", 20],
+                ["Reserved / Filler", 140]
+            ]
+        },
+
+        {
+            "type": "A",            
+            "name": "Activity Record",
+            "parent": "H",              
+            "fields": [
+                ["Message Type", 2],
+                ["User ID", 15],
+                ["ACH Trace Number", 15],
+                ["ACH Routing/Transit", 9],
+                ["ACH Account Number", 17],
+                ["Corrected R/T", 9],
+                ["Corrected Acct. Num.", 17],
+                ["Corrected Tran Code", 1],
+                ["SEC Code", 3],
+                ["Reason Code", 3],
+                ["Original Parsed R/T", 9],
+                ["Original Parsed Account", 20],
+                ["Capture Format", 8],
+                ["Original MICR", 46],
+                ["Reserved / Filler", 26]
+            ]
+        },
+
+        {
+            "type": "F",
+            "name": "Footer Record",
+            "fields": [
+                ["Record Type", 2],
+                ["File ID / Version", 15],
+                ["Detail Record Count", 10],
+                ["Reserved / Filler", 173]
+            ]
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+// List of supported file definitions, loaded at startup.
+// To teach Jiffy a new file format, name its definition JSON file (and optional descriptions file) below.
+
+// ACH / NACHA:
+ach/nacha.json              ach/nacha-descriptions.txt
+
+// Fiserv CCN (for ARP/SMS):
+ccn/ccn-positive-pay-extract.json
+ccn/ccn-positive-pay-input.json
+
+// IRX:
+irx/advice-data.json
+irx/all-items.json
+irx/trial-balance.json
+irx/branch-data.json
+irx/captured-data.json
+irx/cif.json
+irx/vector-sort-cdm.json
+irx/vector-sort-eaf.json
+irx/irx-check-conversion-maintenance.json
+irx/check-recovery-enrollment.json
+irx/check-recovery-mdf.json
+irx/exceptions-decision.json
+irx/irx-online-decision-import.json
+irx/irx-online-decision-items.json
+irx/irx-posting.json
+irx/customer-transmission.json
+
+// Unix:
+unix/passwd.json
+unix/crontab.json
+
+// Samples:
+// samples/contacts.json
