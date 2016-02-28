@@ -1,4 +1,5 @@
 # Jiffy - JavaScript File Editor
+[![Build Status](https://secure.travis-ci.org/derekwlms/jiffy.png?branch=master)](https://travis-ci.org/derekwlms/jiffy)
 
 ![Jiffy](http://paymenthorizons.com/jiffyfiles/jiffy-med.png)
 
