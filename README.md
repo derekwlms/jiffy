@@ -18,8 +18,11 @@ You can run Jiffy locally or use our [online version](http://jiffy.paymenthorizo
 
 1. Get the code:
  *  `git clone https://github.com/derekwlms/jiffy.git`
+ * Or, `npm install jiffy-editor` 
  * Or, `bower install jiffy`
 2. `cd jiffy`
+ * Or, `cd node_modules/jiffy-editor`
+ * Or, `cd bower_components/jiffy`
 3. `npm install && bower install`
 4. `grunt serve`
 5. [Open in your browser](http://localhost:9000).
