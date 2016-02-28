@@ -9,6 +9,9 @@
     "type": "git",
     "url": "git://github.com/derekwlms/jiffy.git"
   },
+  "logo": {
+      "url": "http://paymenthorizons.com/jiffyfiles/jiffy-med.png"
+  },
   "devDependencies": {
     "express": "^4.13.3",
     "grunt": "^0.4.5",
