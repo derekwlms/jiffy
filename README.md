@@ -17,6 +17,7 @@ You can run Jiffy locally or use our [online version](http://jiffy.paymenthorizo
 
 ## Running Locally
 
+Pre-requisites: [git](https://git-scm.com/) and [node.js](https://nodejs.org) ([details](https://github.com/derekwlms/jiffy/wiki/Installation)).
 1. Get the code:
  *  `git clone https://github.com/derekwlms/jiffy.git`
  * Or, `npm install jiffy-editor` 
@@ -36,7 +37,7 @@ Use `grunt` to run jshint, tests, and the distribution build.  Use `grunt test` 
 
 See the [wiki](https://github.com/derekwlms/jiffy/wiki) and [ngdocs](http://paymenthorizons.com/jiffyfiles/docs).
 
-Use `grunt docs` to update the ngdocs.  Then, run `node docserver.js` and [open in a browser](http://localhost:3000/docs).
+Use `grunt docs` to update the ngdocs.  Then, run `node webserver.js` and [open in a browser](http://localhost/app).
 
 ## License
 Jiffy is released under the [ISC License](https://opensource.org/licenses/ISC).  See LICENSE.txt.

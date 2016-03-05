@@ -3,7 +3,7 @@
 //
 // Run 'grunt' for building and 'grunt serve' for preview.
 // Use 'grunt test' to run the unit tests with karma.
-// Use 'grunt docs' to generate doc. Then, run 'node docserver.js' and open in a browser (http://localhost:3000/docs).
+// Use 'grunt docs' to generate doc. Then, run 'node webserver.js' and open in a browser (http://localhost/docs).
 
 'use strict';
 
