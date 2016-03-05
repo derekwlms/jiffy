@@ -18,6 +18,7 @@ You can run Jiffy locally or use our [online version](http://jiffy.paymenthorizo
 ## Running Locally
 
 Pre-requisites: [git](https://git-scm.com/) and [node.js](https://nodejs.org) ([details](https://github.com/derekwlms/jiffy/wiki/Installation)).
+
 1. Get the code:
  *  `git clone https://github.com/derekwlms/jiffy.git`
  * Or, `npm install jiffy-editor` 

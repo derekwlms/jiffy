@@ -1,6 +1,6 @@
 {
   "name": "jiffy-editor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Jiffy - JavaScript File Editor",
   "keywords": [ "file", "editor", "flat", "csv", "fixed", "nacha", "ach" ],
   "license": "ISC",
