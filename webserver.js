@@ -16,7 +16,8 @@ app.use('/', serveStatic(path + '/'));
 app.use('/app/bower_components/', serveStatic(path + '/bower_components/'));
 
 console.log('Serving files from ', path);
-console.log('Web server started.  Visit http://localhost' 
-                + suffix + ' or http://localhost' + suffix + '/app');
 
-app.listen(port);
+app.listen(port, function() {
+    console.log('Web server started.  Visit http://localhost' 
+                + suffix + ' or http://localhost' + suffix + '/app');
+});

@@ -19,16 +19,13 @@ You can run Jiffy locally or use our [online version](http://jiffy.paymenthorizo
 
 Pre-requisites: [git](https://git-scm.com/) and [node.js](https://nodejs.org) ([details](https://github.com/derekwlms/jiffy/wiki/Installation)).
 
-1. Get the code:
- *  `git clone https://github.com/derekwlms/jiffy.git`
- * Or, `npm install jiffy-editor` 
- * Or, `bower install jiffy`
+1. Get the code: `git clone https://github.com/derekwlms/jiffy.git`
 2. `cd jiffy`
- * Or, `cd node_modules/jiffy-editor`
- * Or, `cd bower_components/jiffy`
 3. `npm install && bower install`
 4. `grunt serve`
 5. [Open in your browser](http://localhost:9000).
+
+See the [wiki](https://github.com/derekwlms/jiffy/wiki/Installation) for other installation options.
 
 To enable console logging, set *debugEnabled* to *true* in app.js.
 
