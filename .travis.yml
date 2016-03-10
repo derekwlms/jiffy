@@ -8,3 +8,10 @@ before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install'
 script: grunt
+deploy:
+  provider: heroku
+  api_key:
+    secure: Uer9jri/B5LDykS1gIFs4uEX/wszITELSH0Q0nrHfBQfIKPW4WUxyAW+aibC9T6HaambWg6DytlpDtSod4EFUWjVo0crjZR1J77dnWkXP2HunqCQtHxERnfVpoXG19ZsRSjvIgmlCDNozXP536MywzocFM9ecgjR05nySQ0tfNj3B9+dK92SxIMm6KRSu+BnJT0ixfwYyK7VcrXRh9tVByvDTFS+EWqEMtzJa+H1hLHFpc7WJx9LrlZx56wuvqn/pS1PfhkgXcltZE0r5CPBm0xe/ZqZI4ehP/+8WYVVWNDMzYS5ccpCIZWSFBYHVm5hp1elw4iZCZHDYpsCQ29VTthmdKlp0xw7Dys3+PcQJUTC72mAIZp0snhpOx0Un7hbfM89tSPhwmwLXYuclkFukapIOXtt9YYRmGzFpCeMyIZ9WNnD3KNiK0b8oHRl7k7CJr1dzJFcdJM6ErGBha6s/lhxtKJgX+DTptMkhVljiNFD1NIdRoV6n+QgqoR11x3/zEctUKW+vDKbXP6Lcn4DSWlMi6KhZOs+xxXjlb1X+e/FGHxfqPhzpsnvKnLotzILN+uErrT5XpEy38bbU7uxi216mh1pyVBDtYECjlxIGoRyhJ82FnZodVDF/uKALsXXd2VOD+eXuEfyPq0TDskaf6PO8RHs1JbIcTvfw8He00w=
+  app: fierce-ravine-74201
+  on:
+    repo: derekwlms/jiffy
