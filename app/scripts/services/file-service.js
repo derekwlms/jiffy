@@ -68,14 +68,18 @@
             return deferred.promise;
         };     
         
-        var getFileSystem = function(successCallback) {
+        var getFileSystem = function(successCallback, errorCallback) {
             var requestFileSystem = $window.requestFileSystem || $window.webkitRequestFileSystem;
             requestFileSystem($window.TEMPORARY, MAX_FILE_SIZE, successCallback, function(error) {
-                $log.error('Error getting file system for writing', error);                
+                $log.error('Error getting file system for writing', error);  
+                if (errorCallback) {
+                    var detail = error.name ? ' (' + error.name + ').' : '.';
+                    errorCallback('Unable to save file - error getting file system for writing' + detail);
+                }
             });            
         };        
         
-        var writeFile = function(file, successCallback) {
+        var writeFile = function(file, successCallback, errorCallback) {
             // Save the current file to browser FileSystem temporary storage (for subsequent download).
             // To see FileSystem in F12, use chrome://flags, then Enable Developer Tools Experiments, 
             // then Settings - Experiments - FileSystem inspection
@@ -110,7 +114,7 @@
                 }, function(error) {
                     $log.error('Error creating file', error);
                 });  
-            });
+            }, errorCallback);
         };  
                                              
         var createEmptyFile = function(fileDefinition) {      

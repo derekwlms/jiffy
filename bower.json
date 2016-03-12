@@ -1,10 +1,20 @@
 {
   "name": "jiffy",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Jiffy - JavaScript File Editor",
-  "keywords": [ "file", "editor", "flat", "csv", "fixed", "nacha", "ach" ],
+  "keywords": [
+    "file",
+    "editor",
+    "flat",
+    "csv",
+    "fixed",
+    "nacha",
+    "ach"
+  ],
   "license": "ISC",
-  "authors": [ "Derek Williams" ],   
+  "authors": [
+    "Derek Williams"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/derekwlms/jiffy.git"
@@ -17,6 +27,7 @@
     "angular-touch": "^1.4.9",
     "angular-ui-router": "~0.2.15",
     "angular-bootstrap": "~1.1.0",
+    "bootstrap-css-only": "^3.3.6",      
     "lodash": "~3.10.1"
   },
   "devDependencies": {

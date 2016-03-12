@@ -64,7 +64,8 @@ module.exports = function (grunt) {
         files: [
           '<%= jiffy.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
-          '<%= jiffy.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= jiffy.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= jiffy.app %>/file-definitions/{,*/}*.{json,txt}'            
         ]
       }
     },
@@ -349,7 +350,8 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*',
+            'file-definitions/{,*/}*.*'
           ]
         }, {
           expand: true,

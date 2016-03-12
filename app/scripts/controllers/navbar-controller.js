@@ -79,6 +79,9 @@
                     $scope.model.savedFileUrl = savedFileUrl;
                     $scope.$apply();
                     document.getElementById('download-link').click();                    
+                }, function(errorMsg) {
+                    $scope.model.errorMessage = errorMsg;
+                    $scope.$apply();                    
                 });  
             } else {
                 $log.debug('No file to save');
