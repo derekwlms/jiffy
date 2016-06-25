@@ -288,6 +288,15 @@ Only NACHA sanctioned formats will be permitted, as specified by the Addenda Typ
 Addenda record information may only be used for the purpose of transmitting payment related information. Any other use is prohibited.
 :7-1 Code identifying the Addenda Detail Record.
 
+:701 Cross-Border Payment Addenda Record.
+Carries foreign payment information for CBR and PBR entries.
+
+:702 Transaction Addenda Record.
+Carries terminal transaction information for MTE, POS, and SHR entries.
+
+:705 Payment Addenda Record.
+Carries payment information for CCD, CIE, CTX, DNE, ENR, TRX, and WEB entries.
+
 :710 First IAT Addenda Record.
 The First IAT Addenda Record identifies the Receiver of the transaction and the dollar amount of the payment.
 :710-1 This code identifies the type of record.
@@ -442,6 +451,8 @@ This number is the same as the last seven digits of the trace number of the rela
 This value must be identical for each addenda record associated with a single transaction/payment. 
 If there is another payment in this batch, this value should be sequential (e.g., 0000001, 0000002, etc.).
  
+:718 IAT Addenda Record for Foreign Correspondent Bank Info.
+IAT Addenda Record for Foreign Correspondent Bank Info.
 
 :798 Notification of Change Addenda Record
 :798-1 This code identifies the type of record.
