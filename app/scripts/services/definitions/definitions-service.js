@@ -35,6 +35,9 @@
                     $log.debug('Read file definition', fn, def);     
                     var fileDef = new FileDefinition(def);
                     fileDefinitions.push(fileDef);
+                    fileDefinitions.sort(function(def1, def2) {
+                        return def1.displayString.localeCompare(def2.displayString);
+                    });
                     if (descriptionFilename) {
                         loadFile(path + descriptionFilename, function(data, fn) {
                             var descriptions = data.split(/\r?\n:/);                            

@@ -30,6 +30,9 @@
                 var lineEnd = data.indexOf('\r', i);
                 if (lineEnd === -1) {
                     lineEnd = data.indexOf('\n', i);
+                    if (lineEnd === -1) {
+                        lineEnd = recordEnd;
+                    }
                 } else if (data[lineEnd + 1] === '\n') {
                     lineEnd++;
                 }

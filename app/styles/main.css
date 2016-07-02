@@ -42,6 +42,10 @@ body {
     height: 18vh;
 }
 
+.description-area {
+    white-space: pre-line;
+}
+
 .btn-file {
     position: relative;
     overflow: hidden;
